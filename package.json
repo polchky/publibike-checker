@@ -19,7 +19,6 @@
   "homepage": "https://github.com/polchky/publibike-checker#readme",
   "dependencies": {
     "axios": "^0.19.0",
-    "koa": "^2.10.0",
-    "moment-timezone": "^0.5.26"
+    "koa": "^2.10.0"
   }
 }

@@ -1,7 +1,6 @@
 const Koa = require('koa');
 const axios = require('axios');
 const fs = require('fs');
-const moment = require('moment-timezone');
 
 const app = new Koa();
 
@@ -31,9 +30,6 @@ app.use(async (ctx) => {
         for (let i = 0; i < stations.length; i += 1) {
             res += `${stations[i].name} : ${eBikes[i]}\n`;
         }
-        const date = moment().tz('Europe/Zurich').format();
-
-        res += date.slice(11, 19);
         ctx.body = res;
 
     } catch (err) {
