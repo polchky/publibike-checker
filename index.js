@@ -38,7 +38,6 @@ app.use(async (ctx) => {
 
     } catch (err) {
         ctx.body = err;
-        console.log(err);
     }
 });
 
