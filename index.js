@@ -1,11 +1,7 @@
 const Koa = require('koa');
 const axios = require('axios');
-const fs = require('fs');
 
 const app = new Koa();
-
-const data = fs.readFileSync('stations.json');
-const stations = JSON.parse(data);
 
 const baseUrl = 'https://api.publibike.ch/v1/public/';
 const eBikeId = 2;
@@ -21,14 +17,17 @@ const getStationEBikes = async (id) => {
 
 app.use(async (ctx) => {
     try {
+        const stations = ctx.request.query;
+        const names = Object.keys(stations);
+
         const promises = [];
-        for (let i = 0; i < stations.length; i += 1) {
-            promises.push(getStationEBikes(stations[i].id));
+        for (let i = 0; i < names.length; i += 1) {
+            promises.push(getStationEBikes(stations[names[i]]));
         }
         const eBikes = await Promise.all(promises);
         let res = '';
-        for (let i = 0; i < stations.length; i += 1) {
-            res += `${stations[i].name} : ${eBikes[i]}\n`;
+        for (let i = 0; i < names.length; i += 1) {
+            res += `${names[i]} : ${eBikes[i]}\n`;
         }
         ctx.body = res;
 
