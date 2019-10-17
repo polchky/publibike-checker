@@ -6,28 +6,29 @@ const app = new Koa();
 const url = 'https://api.publibike.ch/v1/public/stations/';
 const eBikeId = 2;
 
-const getStationEBikes = async (id) => {
+const getStationBikes = async (id, type) => {
     const res = await axios.get(`${url}${id}`);
-    let eBikes = 0;
+    let bikes = 0;
     for (let i = 0; i < res.data.vehicles.length; i += 1) {
-        if (res.data.vehicles[i].type.id === eBikeId) eBikes += 1;
+        if (res.data.vehicles[i].type.name === type || type === 'both') bikes += 1;
     }
-    return eBikes;
+    return bikes;
 }
 
 app.use(async (ctx) => {
     try {
+        const type = ctx.request.query.type;
+        delete ctx.request.query.type;
         const stations = ctx.request.query;
         const names = Object.keys(stations);
-
         const promises = [];
         for (let i = 0; i < names.length; i += 1) {
-            promises.push(getStationEBikes(stations[names[i]]));
+            promises.push(getStationBikes(stations[names[i]], type));
         }
-        const eBikes = await Promise.all(promises);
+        const bikes = await Promise.all(promises);
         let res = '';
         for (let i = 0; i < names.length; i += 1) {
-            res += `${names[i]} : ${eBikes[i]}\n`;
+            res += `${names[i]} : ${bikes[i]}\n`;
         }
         ctx.body = res;
 
