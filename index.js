@@ -3,11 +3,11 @@ const axios = require('axios');
 
 const app = new Koa();
 
-const baseUrl = 'https://api.publibike.ch/v1/public/';
+const url = 'https://api.publibike.ch/v1/public/stations/';
 const eBikeId = 2;
 
 const getStationEBikes = async (id) => {
-    const res = await axios.get(`${baseUrl}stations/${id}`);
+    const res = await axios.get(`${url}${id}`);
     let eBikes = 0;
     for (let i = 0; i < res.data.vehicles.length; i += 1) {
         if (res.data.vehicles[i].type.id === eBikeId) eBikes += 1;
