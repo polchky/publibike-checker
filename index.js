@@ -8,7 +8,7 @@ const eBikeId = 2;
 
 const getStationBikes = async (id, type) => {
     const res = await axios.get(`${url}${id}`);
-    if (type === 'all') return res.data.vehicles.length;
+    if (type === undefined) return res.data.vehicles.length;
     let bikes = 0;
     for (let i = 0; i < res.data.vehicles.length; i += 1) {
         if (res.data.vehicles[i].type.name === type) bikes += 1;
