@@ -2,9 +2,7 @@ const Koa = require('koa');
 const axios = require('axios');
 
 const app = new Koa();
-
 const url = 'https://api.publibike.ch/v1/public/stations/';
-const eBikeId = 2;
 
 const getStationBikes = async (id, type) => {
     const res = await axios.get(`${url}${id}`);
