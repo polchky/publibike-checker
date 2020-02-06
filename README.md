@@ -17,7 +17,7 @@ To get the number of bikes, simply configure the widget (or make a plain HTTP GE
 
 An example request would be: 
 ```
-http://mydomain.org:3000/?type=E-Bike&home=233&work=29
+http://mydomain.org:3000/?type=E-Bike&home=233&work=29&battery=true
 ```
 An instance of the server is available at 
 ```
