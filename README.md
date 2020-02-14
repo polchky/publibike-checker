@@ -1,6 +1,5 @@
 # publibike-checker
-This project is a simple web server intended to give the current number of bikes available at selected Publibike stations (Switzerland). The result from the server is raw text, it is intended to be used conjointly with a mobile widget which executes the request when clicked and displays the result directly (e.g. "  
-HTTP Request Widget" on Android).
+This project is a simple web server intended to give the current number of bikes available at selected Publibike stations (Switzerland). The result from the server is raw text, it is intended to be used conjointly with a mobile widget which executes the request when clicked and displays the result directly (e.g. "HTTP Request Widget" on Android).
 
 ## Installation
 
