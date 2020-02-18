@@ -8,7 +8,7 @@ const getStationBikes = async (id, type, battery) => {
     let maxLevel = 0;
     let maxBike = null;
     const res = await axios.get(`${url}${id}`);
-    if (type === undefined) return res.data.vehicles.length;
+    if (type === undefined) return {bikes: res.data.vehicles.length, maxBike};
     let bikes = 0;
     for (let i = 0; i < res.data.vehicles.length; i += 1) {
         const bike = res.data.vehicles[i];
