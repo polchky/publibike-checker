@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const axios = require('axios');
+const fs = require('fs').promises;
 
 const app = new Koa();
 const url = 'https://api.publibike.ch/v1/public/stations/';
@@ -48,7 +49,9 @@ app.use(async (ctx) => {
         ctx.body = res;
 
     } catch (err) {
-        ctx.body = err;
+        ctx.body = 'error';
+        const message = { error: err.stack, request: ctx.request };
+        fs.writeFile('error.log', JSON.stringify(message, null, 2));
     }
 });
 
