@@ -8,13 +8,12 @@ const getStationBikes = async (id, type, battery) => {
     let maxLevel = 0;
     let maxBike = null;
     const res = await axios.get(`${url}${id}`);
-    if (type === undefined) return {bikes: res.data.vehicles.length, maxBike};
     let bikes = 0;
     for (let i = 0; i < res.data.vehicles.length; i += 1) {
         const bike = res.data.vehicles[i];
-        if (bike.type.name === type) {
+        if (type === undefined || bike.type.name === type) {
             bikes += 1;
-            if (battery && type === 'E-Bike' && bike.ebike_battery_level > maxLevel) {
+            if (battery && bike.type.name === 'E-Bike' && bike.ebike_battery_level > maxLevel) {
                 maxBike = bike.name;
                 maxLevel = bike.ebike_battery_level;
             } 
