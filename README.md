@@ -20,6 +20,6 @@ http://mydomain.org:3000/?type=E-Bike&home=233&work=29&battery=true
 ```
 An instance of the server is available at 
 ```
-http://decensor.yt:3000
+http://publibike.decensor.yt
 ```
 Note that the API and this server may change at any time.
