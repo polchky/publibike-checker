@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/polchky/publibike-checker#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "koa": "^2.10.0"
   }
 }
